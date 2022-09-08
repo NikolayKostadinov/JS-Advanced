@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Login Page</h1>
+
+    <form action="#">
+        <div>
+            <label for="username">User name:</label>
+            <input type="text" id="username" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password"><br>
+        </div>
+        <input type="button" value="Login" onclick="loginHandler()">
+        <div>
+            <label id="result"></label>
+        </div>
+    </form>
+
+    <script>
+        function loginHandler() {
+            let usernameElement = document.getElementById('username');
+            let resultElement = document.getElementById('result');
+            resultElement.textContent = (usernameElement.value === 'Pesho') ? 'Logged successfull!' : 'Login failed!';
+        }
+    </script>
+</body>
+
+</html>
