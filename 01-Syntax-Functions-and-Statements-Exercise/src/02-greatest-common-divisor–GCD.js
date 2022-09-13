@@ -1,4 +1,4 @@
-function solve(num1, num2){
+function greatestCommonDivisor(num1, num2){
     let gcd = 1;
     let min = Math.min(num1, num2);
     for (let i = 2; i <= min; i++) {
@@ -10,5 +10,5 @@ function solve(num1, num2){
     console.log(gcd);
 }
 
-solve(15,5);
-solve(2154, 458);
+greatestCommonDivisor(15,5);
+greatestCommonDivisor(2154, 458);

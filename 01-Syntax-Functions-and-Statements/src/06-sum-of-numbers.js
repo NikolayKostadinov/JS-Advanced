@@ -1,4 +1,4 @@
-function solve(n, m) {
+function sumOfNumbers(n, m) {
     let sum = 0;
     const minNum = Number(n);
     const maxNum = Number(m);
@@ -9,5 +9,5 @@ function solve(n, m) {
     console.log(sum);
 }
 
-solve('1', '5');
-solve('-8', '20');
+sumOfNumbers('1', '5');
+sumOfNumbers('-8', '20');

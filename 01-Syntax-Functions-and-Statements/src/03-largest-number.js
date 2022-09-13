@@ -1,7 +1,7 @@
-function solve(...arr){
+function largestNumber (...arr){
     let number = Math.max(...arr);
     console.log(`The largest number is ${number}.`);
 }
 
-solve(5, -3, 16);
-solve(-3, -5, -22.5);
+mathOperations(5, -3, 16);
+mathOperations(-3, -5, -22.5);

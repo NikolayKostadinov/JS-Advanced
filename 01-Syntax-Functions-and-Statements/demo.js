@@ -1,6 +1,2 @@
-let firstName = 'Pesho';
-const age = 20;
-console.log(firstName + ' ' + age);
-
-firstName = 'Peter';
-console.log(firstName + ' ' + age);
+let number = BigInt( Number.MAX_SAFE_INTEGER + 320);
+console.log(number);

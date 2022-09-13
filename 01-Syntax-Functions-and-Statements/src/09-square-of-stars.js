@@ -1,4 +1,4 @@
-function solve(size) {
+function squireOfStars(size) {
     for (let i = 0; i < size; i++) {
         let row = '';
         for (let j = 0; j < size; j++) {
@@ -8,7 +8,7 @@ function solve(size) {
     }
 }
 
-solve(1);
-solve(2);
-solve(5);
-solve(7);
+squireOfStars(1);
+squireOfStars(2);
+squireOfStars(5);
+squireOfStars(7);

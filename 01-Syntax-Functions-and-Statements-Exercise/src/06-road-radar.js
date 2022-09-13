@@ -1,10 +1,10 @@
-function solve(speed, limitType) {
+function roadRadar(speed, limitType) {
     let limits = {
         'motorway': 130,
         'interstate': 90,
         'city': 50,
         'residential': 20,
-    }
+    };
 
     let speedLimit = limits[limitType];
     if (speedLimit >= speed) {
@@ -18,7 +18,7 @@ function solve(speed, limitType) {
     }
 }
 
-solve(40, 'city');
-solve(21, 'residential');
-solve(120, 'interstate');
-solve(200, 'motorway');
+roadRadar(40, 'city');
+roadRadar(21, 'residential');
+roadRadar(120, 'interstate');
+roadRadar(200, 'motorway');

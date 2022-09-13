@@ -1,4 +1,4 @@
-function solve(...params) {
+function cookingByNumbers(...params) {
     let number = Number(params[0]);
     for (let i = 1; i < params.length; i++) {
         switch (params[i]) {
@@ -19,10 +19,10 @@ function solve(...params) {
                 break;
         }
 
-        console.log(number)
+        console.log(number);
     }
 }
 
-solve('32', 'chop', 'chop', 'chop', 'chop', 'chop');
+cookingByNumbers('32', 'chop', 'chop', 'chop', 'chop', 'chop');
 console.log('------------------------------------------');
-solve('9', 'dice', 'spice', 'chop', 'bake', 'fillet');
+cookingByNumbers('9', 'dice', 'spice', 'chop', 'bake', 'fillet');
