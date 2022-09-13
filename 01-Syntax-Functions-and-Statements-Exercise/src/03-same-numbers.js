@@ -1,5 +1,5 @@
-function solve(number) {
-    let sum = 0
+function sameNumber(number) {
+    let sum = 0;
     let strNum = number.toString();
     let isTheSame = true;
     for (let i = 0; i < strNum.length; i++) {
@@ -11,5 +11,5 @@ function solve(number) {
     console.log(sum);
 }
 
-solve(2222222);
-solve(1234);
+sameNumber(2222222);
+sameNumber(1234);

@@ -1,4 +1,4 @@
-function solve(...tokens){
+function mathOperations(...tokens){
     let result = 0;
     switch (tokens[2]){
         case '+':
@@ -24,5 +24,5 @@ function solve(...tokens){
     console.log(result);
 }
 
-solve(5, 6, '+');
-solve(3, 5.5, '*');
+mathOperations(5, 6, '+');
+mathOperations(3, 5.5, '*');

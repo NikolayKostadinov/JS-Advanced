@@ -1,0 +1,6 @@
+{
+    "eslint.useESLintClass": true,
+    "jshint.options":{
+        "esversion":7
+    }
+}

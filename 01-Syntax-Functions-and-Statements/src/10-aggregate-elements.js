@@ -1,4 +1,4 @@
-function solve(elements){
+function aggregateElements(elements){
     let sum1 = 0;
     let sum2 = 0;
     let concat = '';
@@ -14,5 +14,5 @@ function solve(elements){
     console.log(concat);
 }
 
-solve([1, 2, 3]);
-solve([2, 4, 8, 16]);
+aggregateElements([1, 2, 3]);
+aggregateElements([2, 4, 8, 16]);

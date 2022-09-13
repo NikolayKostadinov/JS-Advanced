@@ -1,4 +1,4 @@
-function solve(steps, footprintLength, speed) {
+function timeToWalk(steps, footprintLength, speed) {
     let distanceInMeters = footprintLength * steps;
     let distanceInKilometers = distanceInMeters / 1000;
 
@@ -12,5 +12,5 @@ function solve(steps, footprintLength, speed) {
 }
 
 
-solve(4000, 0.60, 5);
-solve(2564, 0.70, 5.5);
+timeToWalk(4000, 0.60, 5);
+timeToWalk(2564, 0.70, 5.5);
