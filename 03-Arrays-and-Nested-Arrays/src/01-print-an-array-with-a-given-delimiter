@@ -1,0 +1,6 @@
+function printArray(arr, deimiter) {
+    console.log(arr.join(deimiter));
+}
+
+printArray(['One', 'Two', 'Three', 'Four', 'Five'], '-');
+printArray(['How about no?', 'I', 'will', 'not', 'do', 'it!'], '_');
