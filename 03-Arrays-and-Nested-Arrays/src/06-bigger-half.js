@@ -2,7 +2,7 @@ function biggerHalf(arr) {
     let startIx = Math.floor(arr.length / 2);
     return arr
         .sort((a, b) => Number(a) - Number(b))
-        .splice(startIx);
+        .slice(startIx);
 }
 
 console.log(biggerHalf([4, 7, 2, 5]));
