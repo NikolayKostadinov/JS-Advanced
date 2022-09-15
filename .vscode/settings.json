@@ -1,6 +1,44 @@
 {
-    "eslint.useESLintClass": true,
-    "jshint.options":{
-        "esversion":7
+    "eslint.options": {
+        "overrideConfig": {
+            "env": {
+                "es6": true,
+                "browser": true,
+                "node": true,
+                "mocha": true
+            },
+            "globals": {
+                "expect": true
+            },
+            "parserOptions": {
+                "ecmaVersion": 11,
+                "sourceType": "module",
+                "ecmaFeatures": {
+                    "jsx": true
+                }
+            },
+            "rules": {
+                "semi": "error",
+                "curly": "error",
+                "quotes": [
+                    "warn",
+                    "single"
+                ],
+                "no-undef": "error"
+            }
+        }
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Launch Program",
+                "program": "${file}",
+                "cwd": "${workspaceRoot}",
+                "outputCapture": "std"
+            }
+        ]
     }
 }
