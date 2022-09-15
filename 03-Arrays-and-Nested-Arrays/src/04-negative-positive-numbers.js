@@ -2,7 +2,7 @@ function negPosNumbers(arr){
     const result = [];
 
     for (const num of arr) {
-        if  (num < 0){
+        if  (Number(num) < 0){
             result.unshift(num);
         } else {
             result.push(num);
@@ -13,5 +13,5 @@ function negPosNumbers(arr){
 }
 
 negPosNumbers([7, -2, 8, 9]);
-console.log('--------------------')
+console.log('--------------------');
 negPosNumbers([3, -2, 0, -1]);
