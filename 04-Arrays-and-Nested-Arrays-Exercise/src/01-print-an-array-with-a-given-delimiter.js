@@ -1,10 +1,21 @@
-function solve(arr, delimiter) {
+function printDelimitedArray(arr, delimiter){
     console.log(arr.join(delimiter));
 }
 
-solve(['One', 'Two', 'Three', 'Four', 'Five'], '-');
+printDelimitedArray(['One', 
+'Two', 
+'Three', 
+'Four', 
+'Five'], 
+'-'
+);
 
-solve(['How about no?', 'I', 'will', 'not', 'do', 'it!'], '_');
-
-
-
+printDelimitedArray(
+    ['How about no?', 
+'I',
+'will', 
+'not', 
+'do', 
+'it!'], 
+'_'
+);
