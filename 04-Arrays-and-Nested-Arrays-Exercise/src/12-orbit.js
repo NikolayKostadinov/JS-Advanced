@@ -1,5 +1,5 @@
 function orbit(input) {
-    let [cols, rows, starRow, starCol] = input;
+    let [rows, cols, starRow, starCol] = input;
 
     let matrix = Array(rows).fill(0).map(() => Array(cols).fill(0));
 
