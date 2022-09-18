@@ -20,45 +20,45 @@ function townPopulationFunstional(input) {
         towns[name] = (towns[name] | 0) + Number(population);
     });
 
-    return Object.keys(towns)
-        .map(key => console.log(`${key} : ${towns[key]}`))
+    return Object.entries(towns)
+        .map(entry => entry.join(' : '))
         .join('\n');
 }
 
 
-townPopulation(['Sofia <-> 1200000',
+// townPopulation(['Sofia <-> 1200000',
+//     'Montana <-> 20000',
+//     'New York <-> 10000000',
+//     'Washington <-> 2345000',
+//     'Las Vegas <-> 1000000']
+// );
+
+// console.log('-----------------------------');
+
+// townPopulation(
+//     ['Istanbul <-> 100000',
+//         'Honk Kong <-> 2100004',
+//         'Jerusalem <-> 2352344',
+//         'Mexico City <-> 23401925',
+//         'Istanbul <-> 1000']
+// );
+
+// console.log('-----------------------------');
+
+
+console.log(townPopulationFunstional(['Sofia <-> 1200000',
     'Montana <-> 20000',
     'New York <-> 10000000',
     'Washington <-> 2345000',
     'Las Vegas <-> 1000000']
-);
+));
 
 console.log('-----------------------------');
 
-townPopulation(
+console.log(townPopulationFunstional(
     ['Istanbul <-> 100000',
         'Honk Kong <-> 2100004',
         'Jerusalem <-> 2352344',
         'Mexico City <-> 23401925',
         'Istanbul <-> 1000']
-);
-
-console.log('-----------------------------');
-
-
-townPopulationFunstional(['Sofia <-> 1200000',
-    'Montana <-> 20000',
-    'New York <-> 10000000',
-    'Washington <-> 2345000',
-    'Las Vegas <-> 1000000']
-);
-
-console.log('-----------------------------');
-
-townPopulationFunstional(
-    ['Istanbul <-> 100000',
-        'Honk Kong <-> 2100004',
-        'Jerusalem <-> 2352344',
-        'Mexico City <-> 23401925',
-        'Istanbul <-> 1000']
-);
+));
