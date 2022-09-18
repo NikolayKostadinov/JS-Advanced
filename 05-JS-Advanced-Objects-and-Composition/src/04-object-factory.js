@@ -9,17 +9,14 @@ function factory(library, orders) {
 
         products.push(product);
     }
-    
+
     return products;
 }
 
 function factoryFunctional(library, orders) {
-    return orders.map(x => {
-        const result = {};
-        result.name = x.template.name;
-        x.parts.forEach(method => result[method] = library[method]);
-        return result;
-    });
+    return orders.map(x =>
+        Object.assign({}, x.template,
+            Object.fromEntries(x.parts.map(method => [method, library[method]]))));
 }
 
 const library = {
