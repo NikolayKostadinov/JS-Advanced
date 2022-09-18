@@ -14,9 +14,9 @@ function factory(library, orders) {
 }
 
 function factoryFunctional(library, orders) {
-    return orders.map(x =>
-        Object.assign({}, x.template,
-            Object.fromEntries(x.parts.map(method => [method, library[method]]))));
+    return orders.map(o =>
+        Object.assign({}, o.template,
+            Object.fromEntries(o.parts.map(method => [method, library[method]]))));
 }
 
 const library = {
