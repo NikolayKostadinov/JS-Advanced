@@ -1,0 +1,22 @@
+1. Create feature branch:
+ git checkout -b <branch name>
+
+2. Push branch to repo:
+ git push -u origin <branch name>
+ 
+3. Get last changes from main branch
+git checkout <branch name>
+git rebase main
+
+4. Sinc with remote branches
+git fetch --prune
+
+5. Merge branch locally
+git add –A
+$ git commit –m "Some commit message"
+$ git checkout main
+Switched to branch 'main'
+$ git merge <branch name>
+
+
+
