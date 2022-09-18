@@ -13,11 +13,11 @@ function factory(library, orders) {
     return products;
 }
 
-function factoryFunctional(library, orders) {
-    return orders.map(o =>
+factoryFunctional = (library, orders) =>
+    orders.map(o =>
         Object.assign({}, o.template,
             Object.fromEntries(o.parts.map(m => [m, library[m]]))));
-}
+
 
 const library = {
     print: function () {
