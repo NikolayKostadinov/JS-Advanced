@@ -1,16 +1,17 @@
 function search() {
     const items = Array.from(document.getElementsByTagName('li'))
-    items.forEach(el => {
-        el.style.fontWeight = '';
-        el.style.textDecoration = '';
-    });
     const searchedText = document.getElementById('searchText').value;
-    const matches = items.filter(x => x.textContent.indexOf(searchedText) >= 0)
-        .map(
-            el => {
+    let count = 0;
+    const matches = items.map(
+        el => {
+            el.style.fontWeight = 'normal';
+            el.style.textDecoration = '';
+            if (el.textContent.match(searchedText)) {
+                count++;
                 el.style.fontWeight = 'bold';
                 el.style.textDecoration = 'underline';
-                return el;
-            });
-    document.getElementById('result').textContent = `${matches.length} matches found`;
+            }
+            return el;
+        });
+    document.getElementById('result').textContent = `${count} matches found`;
 }

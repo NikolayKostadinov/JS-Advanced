@@ -4,7 +4,7 @@ function solve() {
         .split(/\s+/gm)
         .map(predicate)
         .join('');
-    
+
     const cases = {
         'Pascal Case': (text) => toConvention(text,(w) => w.charAt(0).toUpperCase() + w.substring(1)),
         'Camel Case': (text) => toConvention(text,(w, ix) => ix === 0 ? w : w.charAt(0).toUpperCase() + w.substring(1))     ,
