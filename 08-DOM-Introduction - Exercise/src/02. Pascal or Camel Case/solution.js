@@ -1,15 +1,13 @@
 function solve() {
-    const pascalCase = (text) => text
+    const toConvention = (text, predicate) => text
         .toLowerCase()
         .split(/\s+/gm)
-        .map(w => w.charAt(0).toUpperCase() + w.substring(1))
+        .map(predicate)
         .join('');
+    
     const cases = {
-        'Pascal Case': (text) => pascalCase(text),
-        'Camel Case': (text) => {
-            let result = pascalCase(text)
-            return result.charAt(0).toLowerCase() + result.substring(1);
-        },
+        'Pascal Case': (text) => toConvention(text,(w) => w.charAt(0).toUpperCase() + w.substring(1)),
+        'Camel Case': (text) => toConvention(text,(w, ix) => ix === 0 ? w : w.charAt(0).toUpperCase() + w.substring(1))     ,
         default: 'Error!'
     }
 
