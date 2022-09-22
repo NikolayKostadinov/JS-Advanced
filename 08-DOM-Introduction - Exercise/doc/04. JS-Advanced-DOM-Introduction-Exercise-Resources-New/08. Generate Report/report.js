@@ -1,3 +1,0 @@
-function generateReport() {
-    //TODO
-}
