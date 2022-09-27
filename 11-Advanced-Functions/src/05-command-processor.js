@@ -6,7 +6,7 @@ function solution() {
     }
 
     function removeStart(n) {
-        status = status.slice(n);
+        status = status.slice(n);   
     }
 
     function removeEnd(n) {
