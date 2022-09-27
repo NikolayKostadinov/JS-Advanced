@@ -1,10 +1,10 @@
-function createFormatter(separator, symbol, symbolFirst, formater){
-    return formater.bind(this, separator,symbol,symbolFirst);
+function createFormatter(separator, symbol, symbolFirst, formater) {
+    return (sum) => formater(separator, symbol, symbolFirst, sum);
 }
 
 function currencyFormatter(separator, symbol, symbolFirst, value) {
     let result = Math.trunc(value) + separator;
-    result += value.toFixed(2).substr(-2,2);
+    result += value.toFixed(2).substr(-2, 2);
     if (symbolFirst) return symbol + ' ' + result;
     else return result + ' ' + symbol;
 }
