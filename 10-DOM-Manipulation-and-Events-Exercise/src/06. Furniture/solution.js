@@ -1,65 +1,61 @@
 function solve() {
-    const textAreas = document.querySelectorAll('textarea');
-    const buttons = document.querySelectorAll('button');
+    const [inputArea, outputArea] = document.querySelectorAll('textarea');
+    const [generateBtn, buyFurnitureBtn] = document.querySelectorAll('button');
     const tableBody = document.querySelector('tbody');
-    const furnitureList = {};
+    const furnitureList = [];
 
-    buttons[0].addEventListener('click', generateRecord);
-    buttons[1].addEventListener('click', buyFurniture);
+    generateBtn.addEventListener('click', generateRecord);
+    buyFurnitureBtn.addEventListener('click', buyFurniture);
+
+    function generateCell(type, value) {
+        const td = document.createElement('td');
+        const childElement = document.createElement(type);
+        td.appendChild(childElement);
+
+        if (type === 'img') {
+            childElement.src = value;
+        } else if (type === 'p') {
+            childElement.textContent = value;
+        } else if (type ==='input'){
+            childElement.type = 'checkbox';
+        }
+
+        return td;
+    }
 
     function generateRecord() {
-        JSON.parse(textAreas[0].value).forEach(furniture => {
+        JSON.parse(inputArea.value).forEach(furniture => {
             const tr = document.createElement('tr');
-            const tdImage = document.createElement('td');
-            const img = document.createElement('img');
-            img.src = furniture.img;
-            tdImage.appendChild(img);
-            tr.appendChild(tdImage);
 
-            const tdName = document.createElement('td');
-            tdName.textContent = furniture.name;
-            tr.appendChild(tdName);
+            tr.appendChild(generateCell('img', furniture.img));
+            tr.appendChild(generateCell('p', furniture.name));
+            tr.appendChild(generateCell('p', furniture.price));
+            tr.appendChild(generateCell('p', furniture.decFactor));
+            const td = generateCell('input');
+            tr.appendChild(td);
 
-            const tdPrice = document.createElement('td');
-            tdPrice.textContent = furniture.price;
-            tr.appendChild(tdPrice);
+            const checkbox = td.children[0];
+            function isChecked(){
+                return checkbox.checked;
+            }
 
-            const tdDecFactor = document.createElement('td');
-            tdDecFactor.textContent = furniture.decFactor;
-            tr.appendChild(tdDecFactor);
-
-            const tdMark = document.createElement('td');
-            const markElement = document.createElement('input');
-            markElement.type = 'checkbox';
-            tdMark.appendChild(markElement);
-            tr.appendChild(tdMark);
-
+            furnitureList.push({...furniture, isChecked})
             tableBody.appendChild(tr);
         });
     }
 
-    function parseTable() {
-        const rows = Array.from(document.querySelectorAll('tbody tr'));
-        return rows.map(r => {
-            const cols = r.children;
-            return {
-                name: cols[1].textContent,
-                price: Number(cols[2].textContent),
-                decFactor: Number(cols[3].textContent),
-                selected: cols[4].querySelector('input[type="checkbox"]').checked
-            }
-        }).filter(f => f.selected);
-    }
+
 
     function buyFurniture() {
-        const furnitureList = parseTable();
-        const names = furnitureList.map(f => f.name).join(', ')
-        const totalPrice = furnitureList.reduce((p, q) => p + q.price, 0);
-        const decFactor = furnitureList.reduce((p, q) => p + q.decFactor, 0) / furnitureList.length;
+        const slected = furnitureList
+        .filter(f=>f.isChecked());
+        const names = slected.map(f=>f.name).join(', ');
+        const totalPrice = slected.reduce((p, q) => p + q.price, 0);
+        const decFactor = slected.reduce((p, q) => p + q.decFactor, 0) / slected.length;
 
         let message = `Bought furniture: ${names}\n`;
         message += `Total price: ${totalPrice.toFixed(2)}\n`;
         message += `Average decoration factor: ${decFactor}`;
-        textAreas[1].value = message;
+        outputArea.value = message;
     }
 }
