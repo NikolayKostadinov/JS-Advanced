@@ -9,11 +9,10 @@ function vol() {
 function solve(area, vol, input) {
     let figures = JSON.parse(input);
 
-    return figures.map(figure => (
-        {
-            area: area.apply(figure),
-            volume: vol.apply(figure)
-        }));
+    return figures.map(figure => ({
+        area: area.apply(figure),
+        volume: vol.apply(figure)
+    }));
 }
 
 console.log(solve(area, vol, `[
