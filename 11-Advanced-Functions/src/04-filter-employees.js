@@ -1,5 +1,17 @@
-function solve(input, criteria){
-    const employees = JSON.parse(input);
+function solve(input, criteria) {
+    let counter = 0;
+    
+    let employees = JSON.parse(input);
+    if (criteria !== 'all') {
+        const [propertyName, value] = criteria.split('-');
+        employees = employees.filter(emp => emp[propertyName] === value);
+    }
+
+    console.log(
+        employees
+            .map(e => `${counter++}. ${e.first_name} ${e.last_name} - ${e.email}`)
+            .join('\n')
+    );
 }
 
 solve(`[{
@@ -21,6 +33,6 @@ solve(`[{
     "last_name": "Maldin",
     "email": "emaldin2@hostgator.com",
     "gender": "Male"
-  }]`, 
-'gender-Female'
+  }]`,
+    'gender-Female'
 );
