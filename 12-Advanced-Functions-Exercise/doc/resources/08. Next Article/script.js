@@ -1,3 +1,0 @@
-function getArticleGenerator(articles) {
-    // TODO
-}
