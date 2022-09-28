@@ -1,7 +1,0 @@
-function calculator() {
-    // TODO:
-}
-
-
-
-
