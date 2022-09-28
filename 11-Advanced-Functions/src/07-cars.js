@@ -5,22 +5,37 @@ function solve(input) {
         function create(name, inherit, parentName) {
             const obj = {};
             state[name] = obj;
-            if (inherit){
-                Object.entries(state[parentName])
-                .forEach(p=>obj[p.key] = p.value);
+            if (inherit) {
+                Object.setPrototypeOf(obj, state[parentName])
             }
         }
 
-       
         function set(name, propName, value) {
             state[name][propName] = value;
         }
 
         function print(name) {
-            console.log(
-                Object.entries(state[name])
-                    .map(e => `${e.key}:${e.value}`)
-                    .join(','));
+            const obj = state[name];
+            const props = getAllProperties(obj);
+            console.log(props
+                .map(e => `${e[0]}:${e[1]}`)
+                .join(',')
+            );
+        }
+
+        function getAllProperties(obj) {
+            let props = Object.entries(obj)
+            getParentProps(obj);
+            return props;
+
+            function getParentProps(obj) {
+                const prototype = Object.getPrototypeOf(obj);
+                if (Object.getPrototypeOf(prototype)) {
+                    let parentProps = Object.entries(prototype);
+                    props = props.concat(parentProps);
+                    getParentProps(prototype);
+                }
+            }
         }
 
         return {
@@ -32,16 +47,10 @@ function solve(input) {
 
     let carsProcessor = cars();
 
-    array.forEach(element => {
+    input.forEach(element => {
         let tokens = element.split(' ');
-        cars[tokens.splice(1)](...tokens);
+        carsProcessor[tokens.splice(0, 1)](...tokens);
     });
 }
 
-solve(['create c1',
-'create c2 inherit c1',
-'set c1 color red',
-'set c2 model new',
-'print c1',
-'print c2']
-);
+solve(['create pesho','create gosho inherit pesho','create stamat inherit gosho','set pesho rank number1','set gosho nick goshko','print stamat']);
