@@ -6,7 +6,8 @@ function subSum(arr, startIndex, endIndex) {
             : endIndex;
 
     return arr.slice(startIndex, endIndex + 1)
-        .reduce((p, q) => p + Number(q), 0);
+        .map(n => Number(n))
+        .reduce((acc, n) => acc + n, 0);
 }
 
 console.log(subSum([10, 20, 30, 40, 50, 60], 3, 300));
