@@ -1,0 +1,23 @@
+{
+  "name": "js-advanced",
+  "version": "1.0.0",
+  "description": "В курса \"JS Advanced\" ще получите задълбочени познания по езика JavaScript, като основи на синтаксиса, работа с масиви, матрици, обекти, класове и писане на функции. Ще изучавате по-сложни концепции като function context, explicit binding, event loop. Курсът ще развие алгоритмичното ви мислене. След успешното завършване на този курс, ще имате възможност да работите с DOM дървото, да правите манипулации по него и да работите с \"event\"-и. Ще се разглеждат функционалния и ООП подходите за програмиране с JavaScript, като ще се изучават концепции, като inheritance, object composition и prototype chain. # Придобити умения * Работа с класове и обекти * Работа с функции и JSON формати * Работа с линейни структури * Извличане на информация и манипулация на DOM дървото * Обектно-ориентирано програмиране * Функционално програмиране",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikolayKostadinov/JS-Advanced.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikolayKostadinov/JS-Advanced/issues"
+  },
+  "homepage": "https://github.com/NikolayKostadinov/JS-Advanced#readme",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  }
+}
