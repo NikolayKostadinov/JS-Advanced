@@ -1,5 +1,5 @@
 const {assert} = require('chai');
-const{isSymmetric} = require('./symmetry-check');
+const{isSymmetric} = require('../symmetry-check');
 
 describe('Symmetry Checker', ()=>{
     it('return true if is symmetric', ()=>{
