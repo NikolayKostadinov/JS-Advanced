@@ -1,16 +1,13 @@
 class Contact {
-    #online = false;
-    #titleElement;
-    #article;
+    #online;
 
     constructor(firstName, lastName, phone, email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.#article = this.getRendition();
+        this.online = false;
     }
-
 
     get online() {
         return this.#online;
@@ -18,52 +15,45 @@ class Contact {
 
     set online(value) {
         this.#online = value;
-        const title = this.#article.querySelector('div.title');
-        if (this.#online) {
-            title.classList.add('online');
-        } else {
-            title.classList.remove('online');
+
+        if (this.divTitle) {
+            this.divTitle.className = this.#online ? 'title online' : 'title';
         }
     }
 
     render(id) {
-        const element = document.getElementById(id);
-        element.appendChild(this.#article);
-    }
+        this.article = document.createElement("article");
+        this.divTitle = document.createElement('div');
 
-    getRendition() {
-        const article = document.createElement("article");
-        const divTitle = document.createElement('div');
-        divTitle.classList.add('title');
-        divTitle.textContent = `${this.firstName} ${this.lastName}`
+        this.divTitle.classList.add('title');
+        this.divTitle.textContent = `${this.firstName} ${this.lastName}`
 
-        const btn = document.createElement('button');
-        btn.textContent = '\u2139';
+        this.btn = document.createElement('button');
+        this.btn.textContent = '\u2139';
 
-        btn.addEventListener('click', toggleVisibility)
+        this.btn.addEventListener('click', (e) => {
+            this.divInfo.style.display =
+                this.divInfo.style.display === 'none' ? 'block' : 'none';
+        })
 
-        function toggleVisibility() {
-            divInfo.style.display = divInfo.style.display === 'none' ? 'block' : 'none';
-        }
+        this.divTitle.appendChild(this.btn);
 
-        divTitle.appendChild(btn);
+        this.divInfo = document.createElement('div');
+        this.divInfo.classList.add('info');
+        this.divInfo.style.display = 'none';
 
-        const divInfo = document.createElement('div');
-        divInfo.classList.add('info');
-        divInfo.style.display = 'none';
+        this.spanPhone = document.createElement('span');
+        this.spanPhone.textContent = `\u260E ${this.phone}`
 
-        const spanPhone = document.createElement('span');
-        spanPhone.textContent = `\u260E ${this.phone}`
+        this.spanEmail = document.createElement('span');
+        this.spanEmail.textContent = `\u2709 ${this.email}`;
 
-        const spanEmail = document.createElement('span');
-        spanEmail.textContent = `\u2709 ${this.email}`;
+        this.divInfo.appendChild(this.spanPhone);
+        this.divInfo.appendChild(this.spanEmail);
 
-        divInfo.appendChild(spanPhone);
-        divInfo.appendChild(spanEmail);
+        this.article.appendChild(this.divTitle);
+        this.article.appendChild(this.divInfo);
 
-        article.appendChild(divTitle);
-        article.appendChild(divInfo);
-
-        return article;
+        document.getElementById(id).appendChild(this.article);
     }
 }
