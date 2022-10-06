@@ -1,5 +1,8 @@
 function createPerson(firstName, lsatName) {
-    const person = {firstName: firstName, lastName: lsatName};
+    const person = {
+        firstName: firstName,
+        lastName: lsatName
+    };
     Object.defineProperty(person, 'fullName', {
         get() {
             return this.firstName + ' ' + this.lastName;
