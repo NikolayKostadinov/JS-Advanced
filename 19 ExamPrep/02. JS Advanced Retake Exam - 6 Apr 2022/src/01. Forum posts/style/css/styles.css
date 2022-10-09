@@ -52,15 +52,19 @@ p {
   margin: 7px 7px 7px 0px;
 }
 
-textarea {
-  border-color: #dae4eb;
-  color: #dae4eb;
-}
+/*textarea {*/
+/*  border-color: #dae4eb;*/
+/*  color: #dae4eb;*/
+/*}*/
 
-input[type="text"] {
+input[type="text"], textarea {
   border: solid 1px #dae4eb;
   margin: 20px 0 0 20px;
   padding-left: 10px;
+}
+
+textarea{
+  margin: 0;
 }
 
 .container {
