@@ -3,36 +3,16 @@ const bookSelection = require('./bookSelection');
 
 describe('bookSelection tests suit', () => {
     describe("isGenreSuitable", function () {
-        it("If the value of the string genre is equal to \"Thriller\" or \"Horror\" and the value of age is less or equal to 12 return correct", function () {
-            let genre = 'Thriller';
-            let age = 11;
-            console.assert(bookSelection.isGenreSuitable(genre, age), `Books with ${genre} genre are not suitable for kids at ${age} age`)
-            console.assert(bookSelection.isGenreSuitable(genre, age), `Books with ${genre} genre are not suitable for kids at ${age} age`)
-            genre = 'Horror';
-            age = 12;
-            console.assert(bookSelection.isGenreSuitable(genre, age), `Books with ${genre} genre are not suitable for kids at ${age} age`)
+        it('If Normal genre is suitable for everyone', () => {
+            assert.equal(bookSelection.isGenreSuitable('Test', 0), `Those books are suitable`);
+            assert.equal(bookSelection.isGenreSuitable('Test', 100), `Those books are suitable`);
         });
 
-        it("If the value of the string genre is equal to \"Thriller\" or \"Horror\" and the value of age greater than 12 return correct", function () {
-            let genre = 'Thriller';
-            let age = 13;
-            console.assert(bookSelection.isGenreSuitable(genre, age),
-                `Books with ${genre} genre are not suitable for kids at ${age} age`)
-            genre = 'Horror';
-            age = 99;
-            console.assert(bookSelection.isGenreSuitable(genre, age),
-                `Books with ${genre} genre are not suitable for kids at ${age} age`)
-        });
-
-        it("If the value of the string genre is not equal to \"Thriller\" or \"Horror\" all ages are suitable",
-            function () {
-            let genre = 'Family';
-            let age = 10;
-            console.assert(bookSelection.isGenreSuitable(genre, age), 'Those books are suitable');
-
-            genre = 'Kids';
-            age = 99;
-            console.assert(bookSelection.isGenreSuitable(genre, age), 'Those books are suitable')
+        it('If genre is Thriller or Horror and age is less than 13 it\'s not suitable', () => {
+            assert.equal(bookSelection.isGenreSuitable('Thriller', 12), `Books with Thriller genre are not suitable for kids at 12 age`);
+            assert.equal(bookSelection.isGenreSuitable('Thriller', 11), `Books with Thriller genre are not suitable for kids at 11 age`);
+            assert.equal(bookSelection.isGenreSuitable('Horror', 12), `Books with Horror genre are not suitable for kids at 12 age`);
+            assert.equal(bookSelection.isGenreSuitable('Horror', 11), `Books with Horror genre are not suitable for kids at 11 age`);
         });
     });
 
@@ -57,8 +37,8 @@ describe('bookSelection tests suit', () => {
     describe("suitableTitles", function () {
         it('Adds the title of the book that its genre is equal to the wantedGenre.', () => {
             // arrange
-            const books = [{ title: "The Da Vinci Code", genre: "Thriller" },
-                { title: "The Thriller", genre: "Thriller" },{ title: "War", genre: "Action" },];
+            const books = [{title: "The Da Vinci Code", genre: "Thriller"},
+                {title: "The Thriller", genre: "Thriller"}, {title: "War", genre: "Action"},];
             const wantedGenre = "Thriller";
             // act
             const result = bookSelection.suitableTitles(books, wantedGenre);
