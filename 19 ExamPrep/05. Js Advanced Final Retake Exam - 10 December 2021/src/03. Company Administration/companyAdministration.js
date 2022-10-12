@@ -36,5 +36,6 @@ const companyAdministration = {
         }
         return result.join(", ");
     }
-
 }
+
+module.exports = companyAdministration;
