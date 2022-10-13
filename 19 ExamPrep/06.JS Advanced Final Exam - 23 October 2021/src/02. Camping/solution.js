@@ -3,58 +3,53 @@ class SummerCamp {
         this.organizer = organizer;
         this.location = location
         this.priceForTheCamp = {"child": 150, "student": 300, "collegian": 500};
-        this.listOfParticipants = [];
+        this.listOfParticipantsMap = {};
+    }
+
+    get listOfParticipants(){
+        return Object.values(this.listOfParticipantsMap);
     }
 
     registerParticipant(name, condition, money) {
         if (!this.priceForTheCamp.hasOwnProperty(condition)) {
             throw new Error('Unsuccessful registration at the camp.');
         }
-        const recordIx = this.listOfParticipants.findIndex(p => p.name === name)
-        if (recordIx !== -1) {
+
+        if (this.listOfParticipantsMap.hasOwnProperty(name)) {
             return `The ${name} is already registered at the camp.`;
         }
         if (this.priceForTheCamp[condition] > money) {
             return 'The money is not enough to pay the stay at the camp.'
         }
 
-        this.listOfParticipants.push({name: name, condition: condition, power: 100, wins: 0});
+        this.listOfParticipantsMap[name] = {name: name, condition: condition, power: 100, wins: 0};
         return `The ${name} was successfully registered.`
     }
 
     unregisterParticipant(name) {
-        const recordIx = this.listOfParticipants.findIndex(p => p.name === name)
-
-        if (recordIx === -1) {
+        if (!this.listOfParticipantsMap.hasOwnProperty(name)) {
             throw new Error(`The ${name} is not registered in the camp.`);
         }
-        this.listOfParticipants.splice(recordIx, 1);
+        delete this.listOfParticipantsMap[name];
         return `The ${name} removed successfully.`
     }
 
     timeToPlay(typeOfGame, participant1, participant2) {
-        const recordIx1 = this.listOfParticipants.findIndex(p => p.name === participant1)
-        const recordIx2 = this.listOfParticipants.findIndex(p => p.name === participant2)
-
         if (typeOfGame === 'Battleship') {
-            if (recordIx1 === -1) {
-                throw new Error('Invalid entered name/s.');
-            }
+            this.ensureExists(participant1);
 
-            this.listOfParticipants[recordIx1].power += 20;
+            this.listOfParticipantsMap[participant1].power += 20;
             return `The ${participant1} successfully completed the game ${typeOfGame}.`
         } else {
-            if (recordIx1 === -1 || recordIx2 === -1) {
-                throw new Error('Invalid entered name/s.');
-            }
-            if (this.listOfParticipants[recordIx1].condition !== this.listOfParticipants[recordIx2].condition) {
+            this.ensureExists(participant1, participant2)
+            if (this.listOfParticipantsMap[participant1].condition !== this.listOfParticipantsMap[participant2].condition) {
                 throw new Error(`Choose players with equal condition.`);
             }
-            if (this.listOfParticipants[recordIx1].power > this.listOfParticipants[recordIx2].power) {
-                this.listOfParticipants[recordIx1].wins++;
+            if (this.listOfParticipantsMap[participant1].power > this.listOfParticipantsMap[participant2].power) {
+                this.listOfParticipantsMap[participant1].wins++;
                 return `The ${participant1} is winner in the game ${typeOfGame}.`
-            } else if (this.listOfParticipants[recordIx1].power < this.listOfParticipants[recordIx2].power) {
-                this.listOfParticipants[recordIx2].wins++;
+            } else if (this.listOfParticipantsMap[participant1].power < this.listOfParticipantsMap[participant2].power) {
+                this.listOfParticipantsMap[participant2].wins++;
                 return `The ${participant2} is winner in the game ${typeOfGame}.`
             } else {
                 return `There is no winner.`
@@ -62,8 +57,16 @@ class SummerCamp {
         }
     }
 
+    ensureExists(...participants) {
+        participants.forEach(p => {
+            if (!this.listOfParticipantsMap.hasOwnProperty(p))
+                throw new Error('Invalid entered name/s.');
+        });
+    }
+
     toString() {
-        return `${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}\n` + this.listOfParticipants
+        return `${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}\n` +
+            this.listOfParticipants
             .sort((p1, p2) => p2.wins - p1.wins)
             .map(p => `${p.name} - ${p.condition} - ${p.power} - ${p.wins}`)
             .join('\n');
