@@ -42,7 +42,8 @@ function solve() {
                 ol.appendChild(createElement('li', data.title));
                 Array.from(ol.querySelectorAll('li'))
                     .sort((a, b) =>
-                        a.textContent.localeCompare(b.textContent)).forEach(li => ol.appendChild(li))
+                        a.textContent.localeCompare(b.textContent))
+                    .forEach(li => ol.appendChild(li))
                 article.remove();
             });
         });

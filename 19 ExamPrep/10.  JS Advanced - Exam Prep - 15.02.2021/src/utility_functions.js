@@ -9,7 +9,7 @@ function getInputs() {
             .map(i => [i.id, i]));
 }
 
-function createElement(type, text, cssClass, parent) {
+function createElement(type, text, cssClass) {
     const element = document.createElement(type);
     if (text) {
         element.textContent = text;
@@ -17,10 +17,6 @@ function createElement(type, text, cssClass, parent) {
 
     if (cssClass) {
         element.className = cssClass;
-    }
-
-    if(parent){
-        parent.appendChild(element);
     }
     return element;
 }
@@ -34,8 +30,7 @@ function getData() {
 
 function isValid() {
     return Object.values(inputs)
-            .every(i => i.value)
-        &&(inputs['type-product'].value === 'Computer' || inputs['type-product'].value === 'Phone');
+            .every(i => i.value);
 }
 
 function clearInput() {
