@@ -21,15 +21,15 @@ describe('Repository test suit', () => {
     };
     let repository;
 
-    beforeEach(() => {// Initialize props object
+    beforeEach(() => {
+        // Initialize props object
         let properties = {
             name: "string",
             age: "number",
             birthday: "object"
         };
-//Initialize the repository
-        repository = new Repository(properties);
-// Add two entities
+
+        // Add two entities
         repository = new Repository(properties);
         repository.add(entity);
         repository.add(anotherEntity);
@@ -63,7 +63,6 @@ describe('Repository test suit', () => {
             assert.equal(repository.count, 3);
         });
     });
-
     describe('add', () => {
         it('adds an entity to the data', () => {
             assert.equal(repository.count, 2);
@@ -72,7 +71,7 @@ describe('Repository test suit', () => {
                 age: 45,
                 birthday: new Date(1977, 11, 24)
             };
-            repository.add(newEntity);
+            assert.equal(repository.add(newEntity), 2);
             assert.equal(repository.count, 3);
             assert.deepEqual(repository.getId(2), newEntity);
         });
@@ -84,7 +83,7 @@ describe('Repository test suit', () => {
                 birthday: new Date(1977, 11, 24)
             };
 
-            assert.throw(() => repository.add(newEntity), 'Property name is missing from the entity!');
+            assert.throw(() => repository.add(newEntity), Error, 'Property name is missing from the entity!');
 
             newEntity = {
                 name: "Niki",
@@ -92,14 +91,14 @@ describe('Repository test suit', () => {
                 birthday: new Date(1977, 11, 24)
             };
 
-            assert.throw(() => repository.add(newEntity), 'Property age is missing from the entity!');
+            assert.throw(() => repository.add(newEntity), Error, 'Property age is missing from the entity!');
             newEntity = {
                 name: "Niki",
                 age: 45,
                 //birthday: new Date(1977, 11, 24)
             };
 
-            assert.throw(() => repository.add(newEntity), 'Property birthday is missing from the entity!');
+            assert.throw(() => repository.add(newEntity), Error, 'Property birthday is missing from the entity!');
         });
 
         it('If the property is present, but is of incorrect type, throw a TypeError', () => {
@@ -109,7 +108,7 @@ describe('Repository test suit', () => {
                 birthday: new Date(1977, 11, 24)
             };
 
-            assert.throw(() => repository.add(newEntity), 'Property name is not of correct type!');
+            assert.throw(() => repository.add(newEntity), TypeError, 'Property name is not of correct type!');
         });
 
         it('If the property is present, but is of incorrect type, throw a TypeError', () => {
@@ -119,7 +118,7 @@ describe('Repository test suit', () => {
                 birthday: new Date(1977, 11, 24)
             };
 
-            assert.throw(() => repository.add(newEntity), 'Property age is not of correct type!');
+            assert.throw(() => repository.add(newEntity), TypeError, 'Property age is not of correct type!');
         });
 
         it('If the property is present, but is of incorrect type, throw a TypeError', () => {
@@ -129,10 +128,9 @@ describe('Repository test suit', () => {
                 birthday: 'new Date(1977, 11, 24)'
             };
 
-            assert.throw(() => repository.add(newEntity), 'Property birthday is not of correct type!');
+            assert.throw(() => repository.add(newEntity), TypeError, 'Property birthday is not of correct type!');
         });
     });
-
     describe("getId", function () {
         it("gets record with correct id", function () {
             assert.deepEqual(repository.getId(0), entity);
@@ -145,83 +143,50 @@ describe('Repository test suit', () => {
             assert.throws(() => repo.getId(1), Error, `Entity with id: 1 does not exist!`);
         })
     });
-
     describe('update', () => {
-        it('updates record', () => {
-            entity.name = 'Stamat';
-            repository.update(0, entity);
-            assert.deepEqual(repository.getId(0), entity);
-        });
-
-        it('If the id does not exist in the data throw an Error with message', () => {
-            assert.throw(() => repository.update(3, anotherEntity), Error, 'Entity with id: 3 does not exist!');
-        });
-
-        it('If any property is missing, should throw an Error', () => {
-            let newEntity = {
-                //name: "Niki",
-                age: 45,
-                birthday: new Date(1977, 11, 24)
-            };
-
-            assert.throw(() => repository.update(0, newEntity), 'Property name is missing from the entity!');
-
-            newEntity = {
-                name: "Niki",
-                //age: 45,
-                birthday: new Date(1977, 11, 24)
-            };
-
-            assert.throw(() => repository.update(0,newEntity), 'Property age is missing from the entity!');
-            newEntity = {
-                name: "Niki",
-                age: 45,
-                //birthday: new Date(1977, 11, 24)
-            };
-
-            assert.throw(() => repository.update(0,newEntity), 'Property birthday is missing from the entity!');
-        });
-
-        it('If the property is present, but is of incorrect type, throw a TypeError', () => {
-            let newEntity = {
-                name: 1,
-                age: 45,
-                birthday: new Date(1977, 11, 24)
-            };
-
-            assert.throw(() => repository.update(0,newEntity), 'Property name is not of correct type!');
-        });
-
-        it('If the property is present, but is of incorrect type, throw a TypeError', () => {
-            let newEntity = {
-                name: 'Niki',
-                age: '45',
-                birthday: new Date(1977, 11, 24)
-            };
-
-            assert.throw(() => repository.update(0,newEntity), 'Property age is not of correct type!');
-        });
-
-        it('If the property is present, but is of incorrect type, throw a TypeError', () => {
-            let newEntity = {
-                name: 'Niki',
-                age: 45,
-                birthday: 'new Date(1977, 11, 24)'
-            };
-
-            assert.throw(() => repository.update(0,newEntity), 'Property birthday is not of correct type!');
-        });
+        it('test', () => {
+            repository.add(entity);
+            repository.add(entity);
+            repository.update(1, {name: 'Kolio', age: 18, birthday: new Date(1998, 0, 7)})
+            assert.deepEqual(repository.data.get(1), {name: 'Kolio', age: 18, birthday: new Date(1998, 0, 7)})
+        })
+        it('test', () => {
+            repository.add(entity);
+            repository.add(entity);
+            assert.throw(() => repository.update(1, {
+                name: {},
+                age: 18,
+                birthday: new Date(1998, 0, 7)
+            }), TypeError, 'Property name is not of correct type!')
+        })
+        it('test', () => {
+            repository.add(entity);
+            assert.throw(() => repository.update(0, {
+                hoi: 'Kolio',
+                age: 18,
+                birthday: new Date(1998, 0, 7)
+            }), Error, 'Property name is missing from the entity!')
+        })
+        it('test', () => {
+            assert.throw(() => repository.update(10, {
+                name: 'Kolio',
+                age: 18,
+                birthday: new Date(1998, 0, 7)
+            }), Error, "Entity with id: 10 does not exist!")
+        })
     })
-
     describe('delete', () => {
         it('deletes record', () => {
-            repository.del(0);
-            assert.equal(repository.count, 1);
-            assert.isFalse(repository.data.has(0));
+            repository.add(entity);
+            repository.add(entity);
+            repository.add(entity);
+            repository.del(2);
+            assert.equal(repository.count, 4);
+            assert.isFalse(repository.data.has(2));
         });
 
         it('If the id does not exist in the data throw an Error with message', () => {
-            assert.throw(() => repository.del(3, anotherEntity), Error, 'Entity with id: 3 does not exist!');
+            assert.throw(() => repository.del(3), Error, 'Entity with id: 3 does not exist!');
         });
     })
 });
