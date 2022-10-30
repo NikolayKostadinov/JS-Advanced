@@ -9,4 +9,4 @@
 * Обектно-ориентирано програмиране
 * Функционално програмиране
 
-![Certificate](https://github.com/NikolayKostadinov/JS-Advanced/blob/main/Certificate/JS%20Advanced%20-%20September%202022%20-%20Certificate.jpeg)
+![Certificate](https://github.com/NikolayKostadinov/JS-Advanced/blob/main/Certificate/JS%20Advanced%20-%20September%202022%20-%20Certificate.jpeg) 
