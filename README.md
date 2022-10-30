@@ -8,3 +8,5 @@
 * Извличане на информация и манипулация на DOM дървото
 * Обектно-ориентирано програмиране
 * Функционално програмиране
+
+![Certificate](https://github.com/NikolayKostadinov/Spring-Advanced/blob/main/Spring%20Advanced%20-%20June%202022%20-%20Certificate.jpeg)
